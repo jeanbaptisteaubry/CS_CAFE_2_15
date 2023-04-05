@@ -36,6 +36,12 @@ switch ($action) {
         $Vue->addToCorps(new Vue_Commande_Info($infoCommande));
         $Vue->addToCorps(new Vue_Commande_Histo($histoEtatCommande));
         break;
+    case "VerifierVirement":
+        //récupération des informations de la commande
+        $infoCommande = Modele_Commande::Commande_Select_ParIdCommande($_REQUEST["idCommande"]);
+
+
+        break;
     case "Signaler_CommandePayee":
         \App\Modele\Modele_Log::Realiser_Ajouter($_SESSION["idUtilisateur"],1,$_REQUEST["idCommande"]);
         if (isset($_REQUEST["info"]))

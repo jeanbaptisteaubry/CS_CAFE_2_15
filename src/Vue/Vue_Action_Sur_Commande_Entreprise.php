@@ -27,6 +27,10 @@ class Vue_Action_Sur_Commande_Entreprise extends Vue_Composant
                   <button type='submit' name='action' value='Signaler_CommandePayee'>
                         Commande payée, virement reçu
                   </button>
+                  <br>
+                  <button type='submit' name='action' value='VerifierVirement'>
+                        Checker si virement
+                  </button>
                   
                   <br>
                   <label>Informations complémentaires</label>

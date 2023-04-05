@@ -85,7 +85,7 @@ function genereVarHrefCSRF(): string
 function verifierCSRF($valeurCSRFProposee): bool
 {
     if (isset($_SESSION["CSRF"])) {
-        var_dump($_SESSION["CSRF"]);
+        //var_dump($_SESSION["CSRF"]);
         //si la session existe, on attend une collection
         $nb = count($_SESSION["CSRF"]);
         $boolTrouve = false;

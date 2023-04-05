@@ -271,7 +271,7 @@ CREATE TABLE `salarie` (
 
 LOCK TABLES `salarie` WRITE;
 /*!40000 ALTER TABLE `salarie` DISABLE KEYS */;
-INSERT INTO `salarie` VALUES (12,'userZoomBox','userZoomBox','userZoomBox@userZoomBox.com',20,'userZoomBox','$2y$10$gmg/jNccmD182/hDMfuRLuQf6BpljX4PaPo5OZQDr0oFj0djFxdhW','',1,'2022-11-09'),(13,'test','test','jbaubry25@gmail.com',25,'test','$2y$10$5XlT7WFLGrYP52G6vA37MexyrsyOVLONJKiEkfpfKm/qTwwPDgHae','',0,'1900-01-01');
+INSERT INTO `salarie` VALUES (12,'userZoomBox','userZoomBox','userZoomBox@userZoomBox.com',20,'userZoomBox','$2y$10$k/7rqrfCQrHWXmpsri5DtOeIt/xNSkBqAgW0XK5FxJRo3ySn5qPWS','',1,'2022-11-09'),(13,'test','test','jbaubry25@gmail.com',25,'test','$2y$10$5XlT7WFLGrYP52G6vA37MexyrsyOVLONJKiEkfpfKm/qTwwPDgHae','',0,'1900-01-01');
 /*!40000 ALTER TABLE `salarie` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -287,7 +287,7 @@ CREATE TABLE `token` (
   `valeur` text NOT NULL,
   `codeAction` int(11) NOT NULL COMMENT '1 : Changement mdp',
   `idUtilisateur` int(11) NOT NULL,
-  `dateFin` date NOT NULL,
+  `dateFin` datetime NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -361,4 +361,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-30 13:36:12
+-- Dump completed on 2023-04-05 15:09:12

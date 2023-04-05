@@ -3,6 +3,7 @@
 
 use App\Modele\Modele_Catalogue;
 use App\Modele\Modele_Commande;
+use App\Utilitaire\Singleton_Logger;
 use App\Vue\Vue__CategoriesListe;
 use App\Vue\Vue_Produits_Info_Clients;
 use App\Vue\Vue_Categories_Liste;
