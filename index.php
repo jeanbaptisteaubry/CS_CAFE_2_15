@@ -2,15 +2,14 @@
 session_start();
 include_once "vendor/autoload.php";
 
-use App\Utilitaire\Singleton_Logger;
 use App\Utilitaire\Vue;
 use App\Vue\Vue_AfficherMessage;
 use App\Vue\Vue_Connexion_Formulaire_client;
 use App\Vue\Vue_Structure_Entete;
+use App\Utilitaire\Singleton_Logger;
 use function App\Fonctions\CSRF_Renouveler;
 
 
-//Page appelée pour les utilisateurs publics
 
 
 $Vue = new Vue();
@@ -27,6 +26,7 @@ if(!verifierCSRF($CSRF))
     $Vue->addToCorps(new Vue_Connexion_Formulaire_client());
     $Vue->addToCorps(new Vue_AfficherMessage("Il ne faut pas actualiser !"));
     $Vue->afficher();
+    Singleton_Logger::getInstance()->notice("Jeton CSRF réutilisé $CSRF", );
     die();
 }
 
@@ -53,6 +53,9 @@ if (isset($_REQUEST["action"]))
     $action = $_REQUEST["action"];
 else
     $action = "Action_Par_Defaut";
+
+Singleton_Logger::getInstance()->debug("Chargement : action $action case $case IP".$_SERVER['REMOTE_ADDR']);
+
 
 switch ($typeConnexion) {
     case "visiteur" :

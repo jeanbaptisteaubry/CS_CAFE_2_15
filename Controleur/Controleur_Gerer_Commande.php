@@ -37,6 +37,7 @@ switch ($action) {
         $Vue->addToCorps(new Vue_Commande_Histo($histoEtatCommande));
         break;
     case "Signaler_CommandePayee":
+        \App\Modele\Modele_Log::Realiser_Ajouter($_SESSION["idUtilisateur"],1,$_REQUEST["idCommande"]);
         if (isset($_REQUEST["info"]))
             $infoComplementaire = $_REQUEST["info"];
         else

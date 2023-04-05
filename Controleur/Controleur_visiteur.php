@@ -9,11 +9,54 @@ use App\Vue\Vue_Structure_BasDePage;
 use App\Vue\Vue_Structure_Entete;
 
 use PHPMailer\PHPMailer\PHPMailer;
+use function App\Fonctions\GenererValeurToken;
+
 //Ce contrôleur gère le formulaire de connexion pour les visiteurs
 
 $Vue->setEntete(new Vue_Structure_Entete());
 
 switch ($action) {
+    case "reinitmdpconfirmToken":
+        /** hypothèse, on ne traite que les salariés ! **/
+        //On regarde si le mail appartient à un salarie
+        $salarie = Modele_Salarie::Salarie_Select_byMail($_REQUEST["email"]);
+
+        if ($salarie != null) {
+
+            $mail = new PHPMailer;
+            $mail->isSMTP();
+            $mail->Host = '127.0.0.1';
+            $mail->CharSet = "UTF-8";
+            $mail->Port = 1025; //Port non crypté
+            $mail->SMTPAuth = false; //Pas d’authentification
+            $mail->SMTPAutoTLS = false; //Pas de certificat TLS
+            $mail->setFrom('contact@labruleriecomtoise.fr', 'contact');
+            $mail->addAddress($salarie["mail"], $salarie["nom"] . " " . $salarie["prenom"]);
+            if ($mail->addReplyTo('contact@labruleriecomtoise.fr', 'contact')) {
+                $mail->Subject = 'Objet : MDP !';
+                $mail->isHTML(true);
+
+                $valeurToken = GenererValeurToken();
+                \App\Modele\Modele_Log::Jeton_Creation($valeurToken, $salarie["id"], 2);
+
+                $mail->Body = "Veuillez cliquer sur ce lien pour réinitialiser votre mdp : 
+                <a href='127.0.0.1:63342/CS_CAFE/index.php?action=token&token=$valeurToken'>Lien à cliquer</a>";
+
+                if (!$mail->send()) {
+                    $msg = 'Désolé, quelque chose a mal tourné. Veuillez réessayer plus tard.';
+                } else {
+                    $msg = 'Message envoyé ! Merci de nous avoir contactés.';
+                }
+            } else {
+                $msg = 'Il doit manquer qqc !';
+            }
+        }
+
+
+        $Vue->addToCorps(new Vue_Mail_Confirme());
+
+        break;
+
     case "reinitmdpconfirm":
 
         //On regarde si le mail appartient à une entreprise
@@ -73,7 +116,7 @@ switch ($action) {
                 if ($mail->addReplyTo('contact@labruleriecomtoise.fr', 'contact')) {
                     $mail->Subject = 'Objet : MDP !';
                     $mail->isHTML(true);
-                    $mail->Body = "Votre nouveau mot de passe est $nvMdp";
+                    $mail->Body = "Votre nouveau mot de passe est <a href='bbaerbvargv'>aervaerbv</a> $nvMdp";
 
                     if (!$mail->send()) {
                         $msg = 'Désolé, quelque chose a mal tourné. Veuillez réessayer plus tard.';

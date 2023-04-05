@@ -54,10 +54,13 @@ use App\Vue\Vue_Structure_Entete;
 
             //$_SESSION["idEntreprise"]
             break;
-        default :
-
+        case "Action_Par_Defaut":
             $listeProduit = Modele_Catalogue::Produits_Select_Libelle_Categ("client");
             $Vue->addToCorps(new Vue_Produits_Info_Clients($listeProduit));
+            break;
+        default :
+            Singleton_Logger::getInstance()->notice("Accès route inexistante");
+
     }
 
 $Vue->setBasDePage(new  Vue_Structure_BasDePage());

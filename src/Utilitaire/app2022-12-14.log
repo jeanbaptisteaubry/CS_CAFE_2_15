@@ -1,0 +1,2 @@
+[2022-12-14T17:03:42.770776+01:00] cafe.NOTICE: Jeton CSRF réutilisé  [] {"IP":"127.0.0.1"}
+[2022-12-14T17:03:46.074333+01:00] cafe.DEBUG: Chargement : action Action_Par_Defaut case Cas_Par_Defaut IP127.0.0.1 [] {"IP":"127.0.0.1"}

@@ -27,13 +27,14 @@ if (isset($_REQUEST["action"])) {
 } else
     $action = "Action_Par_Defaut";
 
+/*
 if(isset($_SESSION["typeConnexion"]))
     $Vue->addToCorps(new Vue_AfficherMessage("Debug : typeConnexion $_SESSION[typeConnexion]<br>"));
 if(isset($_SESSION["idUtilisateur"]))
     $Vue->addToCorps(new Vue_AfficherMessage("Debug : idUtilisateur $_SESSION[idUtilisateur]<br>"));
 if(isset($_SESSION["niveauAutorisation"]))
     $Vue->addToCorps(new Vue_AfficherMessage("niveauAutorisation : niveauAutorisation $_SESSION[niveauAutorisation]<br>"));
-
+*/
 
 
 

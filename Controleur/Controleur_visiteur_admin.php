@@ -18,7 +18,8 @@ $Vue->setEntete(new Vue_Structure_Entete());
 switch ($action) {
     case "Se connecter" :
 
-        if (isset($_REQUEST["login"]) and isset($_REQUEST["password"])) {//Si tous les paramètres du formulaire sont bons
+        if (isset($_REQUEST["login"]) and isset($_REQUEST["password"]))
+        {//Si tous les paramètres du formulaire sont bons
 
             //Vérification du mot de passe
             $utilisateur = Modele_Utilisateur::Utilisateur_Select_ParLogin($_REQUEST["login"]);

@@ -285,7 +285,7 @@ DROP TABLE IF EXISTS `token`;
 CREATE TABLE `token` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `valeur` text NOT NULL,
-  `codeAction` int(11) NOT NULL,
+  `codeAction` int(11) NOT NULL COMMENT '1 : Changement mdp',
   `idUtilisateur` int(11) NOT NULL,
   `dateFin` date NOT NULL,
   PRIMARY KEY (`id`)
@@ -361,4 +361,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-30 13:12:37
+-- Dump completed on 2022-11-30 13:36:12
