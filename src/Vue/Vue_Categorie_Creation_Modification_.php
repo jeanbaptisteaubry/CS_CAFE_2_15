@@ -26,7 +26,7 @@ private string $description="";
 
         $str .=  "
 <table style='display: inline-block'> 
-    <form>
+    <form method=post>
         ".genereChampHiddenCSRF()."
         <input type='hidden' name='idCategorie' value='$this->idCategorie'>
         <input type='hidden' name='case' value='Gerer_catalogue'>

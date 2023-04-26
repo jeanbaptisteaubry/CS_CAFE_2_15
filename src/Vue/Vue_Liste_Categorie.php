@@ -15,7 +15,7 @@ class Vue_Liste_Categorie  extends Vue_Composant
         $str= "
     <h1>Liste des Catégories de produit</h1> <br>
     <table style='    display: inline-block;'>
-        <form>
+        <form method=post>
             ".genereChampHiddenCSRF()."
             <td colspan='4'>
             <button class='btnRadius'  type='submit' name='action' 

@@ -16,7 +16,7 @@ switch ($action) {
         break;
     case "RefuserRGPD":
         //Il faut le code pour log out
-        session_destroy();
+        session_unset();
         unset($_SESSION);
         $Vue->addToCorps(new Vue_Connexion_Formulaire_client());
         break;

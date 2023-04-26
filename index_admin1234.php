@@ -6,7 +6,8 @@ use App\Utilitaire\Singleton_Logger;
 use App\Utilitaire\Vue;
 use App\Vue\Vue_AfficherMessage;
 use App\Vue\Vue_Structure_Entete;
-use function App\Fonctions\CSRF_Renouveler;
+//use function App\Fonctions\CSRF_Renouveler;
+//use function App\Fonctions\CSRF_Renouveler;
 
 $GLOBALS["adminFileName"] = "index_admin1234.php";
 
@@ -32,11 +33,12 @@ if(isset($_SESSION["typeConnexion"]))
     $Vue->addToCorps(new Vue_AfficherMessage("Debug : typeConnexion $_SESSION[typeConnexion]<br>"));
 if(isset($_SESSION["idUtilisateur"]))
     $Vue->addToCorps(new Vue_AfficherMessage("Debug : idUtilisateur $_SESSION[idUtilisateur]<br>"));
-if(isset($_SESSION["niveauAutorisation"]))
+
+if(isset($_SESSION["niveauAutorisation"])) {
     $Vue->addToCorps(new Vue_AfficherMessage("niveauAutorisation : niveauAutorisation $_SESSION[niveauAutorisation]<br>"));
-*/
-
-
+    echo "niveauAutorisation : niveauAutorisation $_SESSION[niveauAutorisation]<br>";
+}*/
+//testredacteur
 
 switch ($case) {
     case "Gerer_CommandeClient":
@@ -59,6 +61,5 @@ switch ($case) {
         include "Controleur/Controleur_visiteur_admin.php";
         break;
 }
-
 
 $Vue->afficher();

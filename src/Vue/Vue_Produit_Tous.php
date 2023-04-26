@@ -5,11 +5,11 @@ use App\Utilitaire\Vue_Composant;
 class Vue_Produit_Tous extends Vue_Composant
 {
     private array $listeProduits;
-    private  int $idCategorie=-1;
-    public function __construct(array $listeProduits, int $idCategorie=-1)
+    private  string $uuidCategorie="";
+    public function __construct(array $listeProduits, string $uuidCategorie="")
     {
         $this->listeProduits=$listeProduits ;
-        $this->idCategorie=$idCategorie ;
+        $this->uuidCategorie=$uuidCategorie ;
     }
 
     function donneTexte(): string
@@ -22,7 +22,7 @@ class Vue_Produit_Tous extends Vue_Composant
                             <form style='display: contents;' method='post'>
                                 ".genereChampHiddenCSRF()."
                                 <input type='hidden' name='case' value='Gerer_catalogue'>
-                                <input type='hidden' name='idCategorie' value='$this->idCategorie'>
+                                <input type='hidden' name='uuidCategorie' value='$this->uuidCategorie'>
                                 <button class='btnRadius' type='submit' value='nouveauProduit' name='action'>
                               Nouveau produit ?</button> 
                             </form>   

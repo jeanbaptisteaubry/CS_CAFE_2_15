@@ -49,7 +49,7 @@ switch ($action) {
         break;
     case "SeDeconnecter":
         //L'utilisateur a cliqué sur "se déconnecter"
-        session_destroy();
+        session_unset();
         unset($_SESSION);
         $Vue->setEntete(new Vue_Structure_Entete());
         $Vue->addToCorps(new Vue_Connexion_Formulaire_client());

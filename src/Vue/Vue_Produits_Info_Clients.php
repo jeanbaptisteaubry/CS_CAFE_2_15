@@ -76,9 +76,9 @@ class Vue_Produits_Info_Clients extends Vue_Composant
                     <td><div class='resume'><b>Description :</b> $nDescription</div></td>
                 </tr>
                 
-                <form>
+                <form method=post>
                     <td colspan='2'>
-                        <form>
+                        <form method=post>
                         ".genereChampHiddenCSRF()."
                         <input type='hidden' value='$nproduit' name='idProduit'>
                         <input type='hidden' value='$this->idCategorie' name='idCategorie'>

@@ -38,7 +38,7 @@ class Vue_Categories_Liste extends Vue_Composant
                         <form style='display: contents'> 
                             ".genereChampHiddenCSRF()."
                             <input type='hidden' name='case' value='Gerer_catalogue'>
-                            <input type='hidden' name='idCategorie' value='$iemeCategorie[idCategorie]'>
+                            <input type='hidden' name='uuidCategorie' value='$iemeCategorie[uuidCategorie]'>
                             <button type='submit' value='boutonCategorie' name='action'>
                                 $iemeCategorie[libelle]
                             </button>

@@ -110,7 +110,7 @@ switch ($action) {
         $Vue->setBasDePage(new Vue_Structure_BasDePage());
         break;
     case "deconnexionEntreprise":
-        session_destroy();
+        session_unset();
         unset($_SESSION["idEntreprise"]);
         $Vue->setEntete(new Vue_Structure_Entete());
         $Vue->addToCorps(new Vue_Connexion_Formulaire_client());

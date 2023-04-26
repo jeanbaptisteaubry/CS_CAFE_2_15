@@ -15,7 +15,7 @@ class Vue_Action_Sur_Commande_Client extends Vue_Composant
     function donneTexte(): string
     {
         $str= "<H1>Action(s) sur cette commande</H1>
-    <form>
+    <form method=post>
         ".genereChampHiddenCSRF()."
         <input type='hidden' name='case' value='Gerer_CommandeClient' >
         <input type='hidden' name='changementEtatCommande' >

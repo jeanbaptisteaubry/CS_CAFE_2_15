@@ -3,7 +3,6 @@
 
 use App\Modele\Modele_Catalogue;
 use App\Vue\Vue_Menu_Administration;
-use App\Vue\Vue__CategoriesListe;
 use App\Vue\Vue_Produit_Creation;
 use App\Vue\Vue_Categories_Liste;
 use App\Vue\Vue_Produit_Tous;
@@ -15,8 +14,9 @@ use App\Vue\Vue_Liste_Categorie;
 use App\Vue\Vue_Structure_BasDePage;
 use App\Vue\Vue_Structure_Entete;
 
-if($_SESSION["niveauAutorisation"] != 2) //2 -> redacteur !
+if(!($_SESSION["niveauAutorisation"] == 2 || $_SESSION["niveauAutorisation"] == "2" )) //2 -> redacteur !
 {
+    var_dump($_SESSION);
     die("connection interdite");
 }
 
@@ -29,9 +29,9 @@ $Vue->addToCorps(new Vue_Categories_Liste($listeCategorie, true));
 
 switch ($action) {
     case "boutonCategorie" :
-        $idCategorie = $_REQUEST["idCategorie"];
-        $listeProduit = Modele_Catalogue::Select_Produit_Select_ParIdCateg($idCategorie);
-        $Vue->addToCorps(new Vue_Produit_Tous($listeProduit, $idCategorie));
+        $uuidCategorie = $_REQUEST["uuidCategorie"];
+        $listeProduit = Modele_Catalogue::Select_Produit_Select_ParUuidCateg($uuidCategorie);
+        $Vue->addToCorps(new Vue_Produit_Tous($listeProduit, $uuidCategorie));
         //Vue_Affiche_Liste_Produit_UneCategorie($listeProduit);
         break;
     case "CreationCategorieAvecProduit":

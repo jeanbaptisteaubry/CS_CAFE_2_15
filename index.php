@@ -20,7 +20,7 @@ else
 if(!verifierCSRF($CSRF))
 {//La vérification CSRF a échoué ! on bloque tout !
     //si on fait le choix de la connexion !
-    session_destroy();
+    session_unset();
     unset($_SESSION);
     $Vue->setEntete(new Vue_Structure_Entete());
     $Vue->addToCorps(new Vue_Connexion_Formulaire_client());

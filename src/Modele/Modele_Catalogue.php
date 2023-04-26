@@ -4,6 +4,7 @@ namespace App\Modele;
 
 use App\Utilitaire\Singleton_ConnexionPDO;
 use PDO;
+use function App\Fonctions\guidv4;
 
 class Modele_Catalogue
 {
@@ -23,6 +24,19 @@ select produit.*, libelle, tva.pourcentageTVA
         $reponse = $requetePreparee->execute(); //$reponse boolean sur l'état de la requête
         $tableauReponse = $requetePreparee->fetchAll(PDO::FETCH_ASSOC);
         return $tableauReponse;
+    }
+
+    static function Categorie_SetUUID($idCategorie, $uuid)
+    {
+        $connexionPDO = Singleton_ConnexionPDO::getInstance();
+        $requetePreparee = $connexionPDO->prepare(
+         'update categorie
+                set uuidCategorie = :uuidCategorie
+                where idCategorie = :idCategorie');
+        $requetePreparee->bindParam(':uuidCategorie', $uuid);
+        $requetePreparee->bindParam(':idCategorie', $idCategorie);
+        $reponse = $requetePreparee->execute(); //$reponse boolean sur l'état de la requête
+        return $reponse;
     }
 
     static function Produits_Select_Libelle_Categ($type = "")
@@ -60,6 +74,22 @@ from `categorie`
             on categorie.idCategorie = produit.idCategorie
 where  categorie.idCategorie = :paramId ' . ($type == "client" ? "AND desactiverProduit = 0" : ""));
         $requetePreparee->bindParam('paramId', $idCategorie);
+        $reponse = $requetePreparee->execute(); //$reponse boolean sur l'état de la requête
+        $tableauReponse = $requetePreparee->fetchAll(PDO::FETCH_ASSOC);
+        return $tableauReponse;
+    }
+
+    static function Select_Produit_Select_ParUuidCateg($uuidCategorie, $type = "")
+    {
+
+        $connexionPDO = Singleton_ConnexionPDO::getInstance();
+        $requetePreparee = $connexionPDO->prepare('
+select produit.*, categorie.libelle
+from `categorie` 
+    inner join `produit` 
+            on categorie.idCategorie = produit.idCategorie
+where  categorie.uuidCategorie = :paramUuid ' . ($type == "client" ? "AND desactiverProduit = 0" : ""));
+        $requetePreparee->bindParam('paramUuid', $uuidCategorie);
         $reponse = $requetePreparee->execute(); //$reponse boolean sur l'état de la requête
         $tableauReponse = $requetePreparee->fetchAll(PDO::FETCH_ASSOC);
         return $tableauReponse;
@@ -268,12 +298,14 @@ WHERE idCategorie = :paramidCategorie');
     static function Categorie_Creer($libelle, $description, $desactiver)
     {
         $connexionPDO = Singleton_ConnexionPDO::getInstance();
+        $uuid = guidv4();
         $requetePreparee = $connexionPDO->prepare(
-            'INSERT INTO `categorie` (`idCategorie`, `libelle`, `description`, `desactiverCategorie`) 
-         VALUES (NULL, :paramlibelle, :paramdescription, :paramdesactiverCategorie);');
+            'INSERT INTO `categorie` (`idCategorie`, `libelle`, `description`, `desactiverCategorie` , `uuidCategorie`) 
+         VALUES (NULL, :paramlibelle, :paramdescription, :paramdesactiverCategorie, \''.$uuid.'\');');
         $requetePreparee->bindParam('paramlibelle', $libelle);
         $requetePreparee->bindParam('paramdescription', $description);
         $requetePreparee->bindParam('paramdesactiverCategorie', $desactiver);
+
         $reponse = $requetePreparee->execute(); //$reponse boolean sur l'état de la requête
         //echo $reponse;
         $idCategorie = $connexionPDO->lastInsertId();

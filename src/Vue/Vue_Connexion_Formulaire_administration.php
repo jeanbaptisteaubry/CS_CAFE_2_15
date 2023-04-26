@@ -14,7 +14,7 @@ class Vue_Connexion_Formulaire_administration extends Vue_Composant
     {
         $str= "  
                 <h1>Adminsitration : Connexion</h1>
-  <form  method='post' style='    width: 50%;    display: block;    margin: auto;'>
+  <form action='".$GLOBALS["adminFileName"]."' method='post' style='    width: 50%;    display: block;    margin: auto;'>
 ".genereChampHiddenCSRF()."
                 
                 <label><b>Identifiant de connexion </b></label>
